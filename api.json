@@ -1,0 +1,490 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "O'quv Markazi API",
+      "version": "1.0.0",
+      "description": "O'quv markazi uchun ma'lumotlarni boshqarish API'si"
+    },
+    "paths": {
+      "/students": {
+        "get": {
+          "summary": "O'quvchilarni olish",
+          "responses": {
+            "200": {
+              "description": "O'quvchilar ro'yxati",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": { "type": "integer" },
+                        "name": { "type": "string" },
+                        "age": { "type": "integer" },
+                        "course": { "type": "string" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "O'quvchi qo'shish",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "integer" },
+                    "name": { "type": "string" },
+                    "age": { "type": "integer" },
+                    "course": { "type": "string" }
+                  },
+                  "required": ["id", "name", "age", "course"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Yangi o'quvchi qo'shildi",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "integer" },
+                      "name": { "type": "string" },
+                      "age": { "type": "integer" },
+                      "course": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/students/{student_id}": {
+        "put": {
+          "summary": "O'quvchini tahrirlash",
+          "parameters": [
+            {
+              "name": "student_id",
+              "in": "path",
+              "required": true,
+              "schema": { "type": "integer" }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": { "type": "string" },
+                    "age": { "type": "integer" },
+                    "course": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "O'quvchi tahrirlandi",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "integer" },
+                      "name": { "type": "string" },
+                      "age": { "type": "integer" },
+                      "course": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "O'quvchi topilmadi"
+            }
+          }
+        },
+        "delete": {
+          "summary": "O'quvchini o'chirish",
+          "parameters": [
+            {
+              "name": "student_id",
+              "in": "path",
+              "required": true,
+              "schema": { "type": "integer" }
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "O'quvchi o'chirildi"
+            },
+            "404": {
+              "description": "O'quvchi topilmadi"
+            }
+          }
+        }
+      },
+      "/courses": {
+        "get": {
+          "summary": "Kurslarni olish",
+          "responses": {
+            "200": {
+              "description": "Kurslar ro'yxati",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": { "type": "integer" },
+                        "name": { "type": "string" },
+                        "description": { "type": "string" },
+                        "teacher": { "type": "string" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Kurs qo'shish",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "integer" },
+                    "name": { "type": "string" },
+                    "description": { "type": "string" },
+                    "teacher": { "type": "string" }
+                  },
+                  "required": ["id", "name", "description", "teacher"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Yangi kurs qo'shildi",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "integer" },
+                      "name": { "type": "string" },
+                      "description": { "type": "string" },
+                      "teacher": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/courses/{course_id}": {
+        "put": {
+          "summary": "Kursni tahrirlash",
+          "parameters": [
+            {
+              "name": "course_id",
+              "in": "path",
+              "required": true,
+              "schema": { "type": "integer" }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": { "type": "string" },
+                    "description": { "type": "string" },
+                    "teacher": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Kurs tahrirlandi",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "integer" },
+                      "name": { "type": "string" },
+                      "description": { "type": "string" },
+                      "teacher": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Kurs topilmadi"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Kursni o'chirish",
+          "parameters": [
+            {
+              "name": "course_id",
+              "in": "path",
+              "required": true,
+              "schema": { "type": "integer" }
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "Kurs o'chirildi"
+            },
+            "404": {
+              "description": "Kurs topilmadi"
+            }
+          }
+        }
+      },
+      "/news": {
+        "get": {
+          "summary": "Yangiliklarni olish",
+          "responses": {
+            "200": {
+              "description": "Yangiliklar ro'yxati",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": { "type": "integer" },
+                        "title": { "type": "string" },
+                        "content": { "type": "string" },
+                        "date": { "type": "string", "format": "date-time" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Yangilik qo'shish",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "integer" },
+                    "title": { "type": "string" },
+                    "content": { "type": "string" },
+                    "date": { "type": "string", "format": "date-time" }
+                  },
+                  "required": ["id", "title", "content", "date"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Yangi yangilik qo'shildi",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "integer" },
+                      "title": { "type": "string" },
+                      "content": { "type": "string" },
+                      "date": { "type": "string", "format": "date-time" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/news/{news_id}": {
+        "put": {
+          "summary": "Yangilikni tahrirlash",
+          "parameters": [
+            {
+              "name": "news_id",
+              "in": "path",
+              "required": true,
+              "schema": { "type": "integer" }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "title": { "type": "string" },
+                    "content": { "type": "string" },
+                    "date": { "type": "string", "format": "date-time" }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Yangilik tahrirlandi",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "integer" },
+                      "title": { "type": "string" },
+                      "content": { "type": "string" },
+                      "date": { "type": "string", "format": "date-time" }
+                    }
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Yangilik topilmadi"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Yangilikni o'chirish",
+          "parameters": [
+            {
+              "name": "news_id",
+              "in": "path",
+              "required": true,
+              "schema": { "type": "integer" }
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "Yangilik o'chirildi"
+            },
+            "404": {
+              "description": "Yangilik topilmadi"
+            }
+          }
+        }
+      },
+      "/messages": {
+        "get": {
+          "summary": "Xabarlarni olish",
+          "responses": {
+            "200": {
+              "description": "Xabarlar ro'yxati",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "student_id": { "type": "integer" },
+                        "message": { "type": "string" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Xabar yozish",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "student_id": { "type": "integer" },
+                    "message": { "type": "string" }
+                  },
+                  "required": ["student_id", "message"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Yangi xabar yozildi",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "student_id": { "type": "integer" },
+                      "message": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/students/{student_id}/messages": {
+        "get": {
+          "summary": "O'quvchining o'z xabarlarini olish",
+          "parameters": [
+            {
+              "name": "student_id",
+              "in": "path",
+              "required": true,
+              "schema": { "type": "integer" }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "O'quvchining xabarlar ro'yxati",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "student_id": { "type": "integer" },
+                        "message": { "type": "string" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
